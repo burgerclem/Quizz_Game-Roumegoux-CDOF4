@@ -31,7 +31,18 @@ def poser_question(questions=questions):
     for i in range(len(answers_shuffle)):
         print(f"{(i+1)}) {answers_shuffle[i]}")
 
-    user_answer = int(input("Quelle est votre réponse ? "))
+    while True:
+        try:
+            user_answer = int(input("Quelle est votre réponse ? "))
+            if user_answer not in [1, 2, 3, 4]:
+                raise IndexError("La valeur doit être 1, 2, 3 ou 4.")
+            break
+        except (ValueError, IndexError) as e:
+            print(f"Entrée invalide : {e}. Veuillez réessayer.")
+
+    print(f"Vous avez choisi : {user_answer}")
+
+
 
     print(answers_shuffle[user_answer-1])
     if answers_shuffle[int(user_answer)-1] == answer : 
