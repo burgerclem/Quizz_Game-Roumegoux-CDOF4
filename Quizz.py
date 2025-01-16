@@ -34,18 +34,19 @@ def poser_question(questions=questions):
     print("\n9) Quitter")
     while True:
         try:
-            user_answer = int(input("Quelle est votre réponse ? "))
-            if user_answer not in [1, 2, 3, 4, 9]:
-                raise IndexError("La valeur doit être 1, 2, 3 ou 4 (ou 9 pour quitter).")
+            user_answer = input("Quelle est votre réponse ? ")
+            if user_answer not in ["1","2","3","4", "q"]:
+                raise IndexError("La valeur doit être 1, 2, 3 ou 4 (ou q pour quitter).")
             break
         except (ValueError, IndexError) as e:
             print(f"Entrée invalide : {e}. Veuillez réessayer.")
 
     print(f"Vous avez choisi : {user_answer}")
 
-    if user_answer==9:
+    if str(user_answer)=="q":
         return False
     else:
+        user_answer=int(user_answer)
         print(answers_shuffle[user_answer-1])
         if answers_shuffle[int(user_answer)-1] == answer : 
             print("Bien joué :)\n")
